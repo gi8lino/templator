@@ -1,0 +1,6 @@
+.vscode/
+dst/
+src/
+*.pyc
+*.env
+*.yaml
