@@ -597,12 +597,16 @@ def read_file(path: str,
         delimiter {str} -- delimiter (default: {'='})
 
     Raises:
+        ValueError: no delemiter for file is None
         FileNotFoundError: file to read does not exists
         TypeError: file suffix does not end with .env or .json
 
     Returns:
         dict -- dictionary with extracted key/value pairs
     """
+
+    if not delimiter:
+        raise ValueError("no delemiter for file passed")
 
     key_value_dict = {}
 
@@ -674,7 +678,7 @@ def main():
                 recursive=args.recursive,
                 key_value_list=args.key_value_list,
                 input_files=args.input_files,
-                file_delimiter=args.delimiter,
+                file_delimiter=args.delimiter or '=',
                 strict=args.strict,
                 no_os_env=args.no_os_env,
                 append=args.append,
